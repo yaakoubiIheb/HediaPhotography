@@ -58,9 +58,15 @@ class Image(models.Model):
 
 class Video(models.Model):
     projet = models.ForeignKey(Projet,on_delete=models.CASCADE,blank=False)
-    url=models.URLField(blank=False)
+    url=models.TextField(blank=False)
     def __str__(self):
-        return self.projet
+        return "project video"
+
+    @property
+    def video_preview(self):
+        return mark_safe('{url}'.format(url=self.url,))
+
+        
 
 
 
@@ -75,6 +81,11 @@ class Personne(models.Model):
     description=models.TextField(blank=False)
     def __str__(self):
         return self.prenom
+
+    @property
+    def image_preview(self):
+        return mark_safe('<img src="{}" width=300 height=300 />'.format(self.image.url,))
+    
 
 
 

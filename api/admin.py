@@ -1,12 +1,14 @@
 from dataclasses import fields
 from django.contrib import admin
 from .models import*
+from django.contrib.auth.models import User
+from django.contrib.auth.models import Group
 
 
 
-admin.site.register(Video)
-admin.site.register(Personne)
-admin.site.register(Information)
+
+
+
 
 
 class CouvertureAdmin(admin.ModelAdmin):
@@ -44,10 +46,11 @@ class ProjetAdmin(admin.ModelAdmin):
 
 class ImageAdmin(admin.ModelAdmin):
 
-    list_display=('projet','image_preview')
-    list_display_links=('projet','image_preview')
+    list_display=('projet','image_preview','priorite',)
+    list_display_links=('projet','image_preview','priorite',)
     search_fields=['projet__nom']
     readonly_fields = ('image_preview',)
+    list_filter=['projet','priorite']
 
     def image_preview(self, obj):
         return obj.image_preview
@@ -57,10 +60,70 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 
+
+
+
+
+
+class PersonneAdmin(admin.ModelAdmin):
+
+    list_display=('nom','prenom','description',)
+    list_display_links=('nom','prenom','description',)
+    readonly_fields = ('image_preview',)
+    
+
+    def image_preview(self, obj):
+        return obj.image_preview
+
+    image_preview.short_description = 'image'
+    image_preview.allow_tags = True
+
+
+
+
+
+
+
+
+
+class InformationAdmin(admin.ModelAdmin):
+
+    list_display=('email','telephone','adresse',)
+    list_display_links=('email','telephone','adresse',)
+
+
+
+
+
+
+
+
+class VideoAdmin(admin.ModelAdmin):
+
+    list_display=('projet','url',)
+    list_display_links=('projet','url',)
+    list_filter=['projet']
+    search_fields=['url']
+    readonly_fields = ('video_preview',)
+
+
+    def video_preview(self, obj):
+        return obj.video_preview
+
+    video_preview.short_description = 'video'
+    video_preview.allow_tags = True
+
+
+
+
+
+
 admin.site.register(Theme, CouvertureAdmin)
 admin.site.register(Projet,ProjetAdmin)
 admin.site.register(Image,ImageAdmin)
-
+admin.site.register(Video,VideoAdmin)
+admin.site.register(Personne,PersonneAdmin)
+admin.site.register(Information,InformationAdmin)
 
 
 
@@ -68,4 +131,10 @@ admin.site.site_header = "Hedia Photography Administration"
 admin.site.site_title = "Hedia Photography Administration"
 admin.site.index_title = "Hedia Photography Administration"
 admin.site.site_url=None
+
+
+
+
+admin.site.unregister(User)
+admin.site.unregister(Group)
 
