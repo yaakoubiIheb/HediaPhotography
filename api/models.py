@@ -43,7 +43,7 @@ class ThingPriority(models.IntegerChoices):
 
 class Image(models.Model):
     projet = models.ForeignKey(Projet,on_delete=models.CASCADE,blank=False)
-    image =models.ImageField(blank=False)
+    image =models.ImageField(blank=False,upload_to ='Images/')
     priorite=models.IntegerField(default=ThingPriority.LOW,choices=ThingPriority.choices)
     @property
     def image_preview(self):
@@ -77,7 +77,7 @@ class Video(models.Model):
 class Personne(models.Model):
     nom = models.CharField(max_length=50,blank=False)
     prenom = models.CharField(max_length=50,blank=False)
-    image =models.ImageField(upload_to ='Images/PersonneImages')
+    image =models.ImageField(upload_to ='PersonneImages/')
     description=models.TextField(blank=False)
     def __str__(self):
         return self.prenom
