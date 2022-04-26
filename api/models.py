@@ -64,7 +64,33 @@ class Video(models.Model):
 
     @property
     def video_preview(self):
-        return mark_safe('{url}'.format(url=self.url,))
+        def find_str(s, char):
+            index = 0
+
+            if char in s:
+                c = char[0]
+                for ch in s:
+                    if ch == c:
+                        if s[index:index+len(char)] == char:
+                            return index
+
+                    index += 1
+
+            return -1
+
+        pos1=find_str(self.url,"width")
+        pos2=find_str(self.url,"height")
+        pos3=find_str(self.url,"src")
+
+        width=self.url[pos1:pos2]
+        height=self.url[pos2:pos3]
+
+        res=self.url.replace(width,'width="800"')
+        res=self.url.replace(height,'height="400"')
+
+
+
+        return mark_safe('{url}'.format(url=res,))
 
         
 
