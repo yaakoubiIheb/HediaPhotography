@@ -88,8 +88,8 @@ class PersonneAdmin(admin.ModelAdmin):
 
 class InformationAdmin(admin.ModelAdmin):
 
-    list_display=('email','telephone','adresse','instagram','facebook',)
-    list_display_links=('email','telephone','adresse','instagram','facebook',)
+    list_display=('email','telephone','adresse','instagram','facebook','description',)
+    list_display_links=('email','telephone','adresse','instagram','facebook','description',)
 
 
 

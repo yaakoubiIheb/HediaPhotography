@@ -137,8 +137,9 @@ class Information(models.Model):
     telephone=models.CharField(max_length=12,blank=False)
     email=models.EmailField(blank=False)
     adresse=models.CharField(max_length=200,blank=False)
-    instagram=models.CharField(max_length=200)
-    facebook=models.CharField(max_length=200)
+    instagram=models.CharField(max_length=200,blank=True)
+    facebook=models.CharField(max_length=200,blank=True)
+    description=models.TextField(blank=True)
     def __str__(self):
         return self.email
 
