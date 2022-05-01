@@ -16,14 +16,40 @@ def ImageByProject(request, pk):
         serializer = ImageSerializer(images,many=True)
         res={"images":[]}
         for image in serializer.data:
-             url=request.META['HTTP_HOST']+image["image"] 
+             if image["priorite"]==2:
+                 url=request.META['HTTP_HOST']+image["image"] 
 
 
-             res["images"].append({"id": image["id"],
-             "projet":image["projet"],
-             "priorite":image["priorite"],
-            "image":url})
+                 res["images"].append({"id": image["id"],
+                "projet":image["projet"],
+                "priorite":image["priorite"],
+                "image":url})
 
+
+        for image in serializer.data:
+             if image["priorite"]==1:
+                 url=request.META['HTTP_HOST']+image["image"] 
+
+
+                 res["images"].append({"id": image["id"],
+                "projet":image["projet"],
+                "priorite":image["priorite"],
+                "image":url})
+
+
+
+        for image in serializer.data:
+             if image["priorite"]==0:
+                 url=request.META['HTTP_HOST']+image["image"] 
+
+
+                 res["images"].append({"id": image["id"],
+                "projet":image["projet"],
+                "priorite":image["priorite"],
+                "image":url})
+
+
+             
         
         return JsonResponse(res, safe=False)
 

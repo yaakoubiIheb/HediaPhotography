@@ -17,6 +17,8 @@ path('theme/<slug:pk>/',Theme_detail),
 
 #project paths
 path('projet/<slug:pk>/',ProjetByTheme),
+path('projetByName/<slug:pk>/',ProjetByName),
+
 
 
 

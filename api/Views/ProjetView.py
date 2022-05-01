@@ -29,4 +29,27 @@ def ProjetByTheme(request, pk):
 
 
 
+@csrf_exempt
+def ProjetByName(request, pk):
+
+
+    if request.method == 'GET':
+        projets = Projet.objects.get(pk=pk)
+        serializer = ProjetSerializer(projets)
+        res={"projet":[]}
+        
+    
+        url=request.META['HTTP_HOST']+serializer.data["couverture"]   
+        res["projet"].append({"nom": serializer.data["nom"],
+             "description":serializer.data["description"],
+             "theme":serializer.data["theme"],
+            "couverture":url})
+
+        
+        return JsonResponse(res, safe=False)
+
+
+
+
+
 
