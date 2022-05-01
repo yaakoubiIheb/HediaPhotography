@@ -1,3 +1,0 @@
-pip install django
-pip install django djangorestframework django-cors-headers Pillow
-pip install psycopg2
