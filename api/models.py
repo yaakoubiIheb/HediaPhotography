@@ -90,14 +90,17 @@ class Video(models.Model):
             return -1
 
         pos1=find_str(self.url,"width")
+
         pos2=find_str(self.url,"height")
         pos3=find_str(self.url,"src")
         #this is for replacing the default width and height by 800*600 to adapt to the window width
-        width=self.url[pos1:pos2]
+        width = self.url[self.url.find('width'):pos2-1]
+        print(len(width))
+       # width=self.url[pos1:pos2-1]
         height=self.url[pos2:pos3]
 
-        res=self.url.replace(width,'width="800"')
-        res=self.url.replace(height,'height="400"')
+        res=self.url.replace(width,'width="100%"')
+        #res=res.replace(height,'height="600"')
 
 
 
