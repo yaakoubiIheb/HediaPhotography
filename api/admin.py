@@ -88,8 +88,8 @@ class PersonneAdmin(admin.ModelAdmin):
 
 class InformationAdmin(admin.ModelAdmin):
 
-    list_display=('email','telephone','adresse','instagram','facebook','description',)
-    list_display_links=('email','telephone','adresse','instagram','facebook','description',)
+    list_display=('email','telephone','adresse','instagram','facebook','description','linkedIn',)
+    list_display_links=('email','telephone','adresse','instagram','facebook','description','linkedIn',)
 
 
 
@@ -104,7 +104,7 @@ class VideoAdmin(admin.ModelAdmin):
     list_display_links=('projet','url',)
     list_filter=['projet']
     search_fields=['url']
-    readonly_fields = ('video_preview',)
+    readonly_fields = ('video_preview', )
 
 
     def video_preview(self, obj):

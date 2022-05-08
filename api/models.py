@@ -142,6 +142,7 @@ class Information(models.Model):
     adresse=models.CharField(max_length=200,blank=False)
     instagram=models.CharField(max_length=200,blank=True)
     facebook=models.CharField(max_length=200,blank=True)
+    linkedIn=models.CharField(max_length=200,blank=True)
     description=models.TextField(blank=True)
     def __str__(self):
         return self.email
