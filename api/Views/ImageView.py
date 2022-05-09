@@ -8,11 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
-def ImageByProject(request, pk):
+def ImageByProject(request):
 
 
-    if request.method == 'GET':
-        images = Image.objects.filter(projet=pk)
+    if request.method == 'POST':
+        images = Image.objects.filter(projet=request.POST.get("projet"))
         serializer = ImageSerializer(images,many=True)
         res={"images":[]}
         for image in serializer.data:

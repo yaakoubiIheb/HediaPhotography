@@ -8,11 +8,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
-def VideoByProject(request, pk):
+def VideoByProject(request):
 
 
-    if request.method == 'GET':
-        videos = Video.objects.filter(projet=pk)
+    if request.method == 'POST':
+        videos = Video.objects.filter(projet=request.POST.get("projet"))
         serializer = ViedoSerializer(videos,many=True)
         
         return JsonResponse(serializer.data, safe=False)

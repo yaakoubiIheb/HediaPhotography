@@ -11,23 +11,23 @@ urlpatterns = [
 
 #theme paths
 path('theme/',Theme_list),
-path('theme/<slug:pk>/',Theme_detail),
+path('themeByName/',Theme_detail),
 
 
 
 #project paths
-path('projet/<slug:pk>/',ProjetByTheme),
-path('projetByName/<slug:pk>/',ProjetByName),
+path('projet/',ProjetByTheme),
+path('projetByName/',ProjetByName),
 
 
 
 
 #image paths
-path('image/<slug:pk>/',ImageByProject),
+path('image/',ImageByProject),
 
 
 #video paths
-path('video/<slug:pk>/',VideoByProject),
+path('video/',VideoByProject),
 
 
 

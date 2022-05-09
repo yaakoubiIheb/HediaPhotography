@@ -25,14 +25,16 @@ def Theme_list(request):
 
 
 @csrf_exempt
-def Theme_detail(request, pk):
+def Theme_detail(request):
   
     try:
-        theme = Theme.objects.get(pk=pk)
-    except Theme.DoesNotExist:
-        return HttpResponse("Theme not found",status=404)
+        theme = Theme.objects.get(nom=request.POST.get('nom'))
 
-    if request.method == 'GET':
+        
+    except Theme.DoesNotExist:
+        return HttpResponse("Theme not found"+request.POST.get('nom',"test"),status=404)
+
+    if request.method == 'POST':
 
         serializer = ThemeSerializer(theme)
         url=request.META['HTTP_HOST']+serializer.data["couverture"]

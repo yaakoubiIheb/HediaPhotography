@@ -10,11 +10,11 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 @csrf_exempt
-def ProjetByTheme(request, pk):
+def ProjetByTheme(request):
 
 
-    if request.method == 'GET':
-        projets = Projet.objects.filter(theme=pk)
+    if request.method == 'POST':
+        projets = Projet.objects.filter(theme=request.POST.get("theme"))
         serializer = ProjetSerializer(projets,many=True)
         res={"projets":[]}
         for projet in serializer.data:
@@ -32,15 +32,15 @@ def ProjetByTheme(request, pk):
 
 
 @csrf_exempt
-def ProjetByName(request, pk):
+def ProjetByName(request):
 
 
-    if request.method == 'GET':
-        projets = Projet.objects.get(pk=pk)
+    if request.method == 'POST':
+        projets = Projet.objects.get(pk=request.POST.get("nom"))
         serializer = ProjetSerializer(projets)
-        images = Image.objects.filter(projet=pk)
+        images = Image.objects.filter(projet=request.POST.get("nom"))
         imageSerializer = ImageSerializer(images,many=True)
-        videos = Video.objects.filter(projet=pk)
+        videos = Video.objects.filter(projet=request.POST.get("nom"))
         videoSerializer = ViedoSerializer(videos,many=True)
 
 
