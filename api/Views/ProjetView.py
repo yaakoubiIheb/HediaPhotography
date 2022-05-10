@@ -19,7 +19,7 @@ def ProjetByTheme(request):
         res={"projets":[]}
         for projet in serializer.data:
              url=request.META['HTTP_HOST']+projet["couverture"]   
-             res["projets"].append({"nom": projet["nom"],
+             res["projets"].append({"id":projet['id'],"nom": projet["nom"],
              "description":projet["description"],
              "theme":projet["theme"],
             "couverture":url})
@@ -32,15 +32,15 @@ def ProjetByTheme(request):
 
 
 @csrf_exempt
-def ProjetByName(request):
+def ProjetById(request):
 
 
     if request.method == 'POST':
-        projets = Projet.objects.get(pk=request.POST.get("nom"))
+        projets = Projet.objects.get(pk=request.POST.get("id"))
         serializer = ProjetSerializer(projets)
-        images = Image.objects.filter(projet=request.POST.get("nom"))
+        images = Image.objects.filter(projet=request.POST.get("id"))
         imageSerializer = ImageSerializer(images,many=True)
-        videos = Video.objects.filter(projet=request.POST.get("nom"))
+        videos = Video.objects.filter(projet=request.POST.get("id"))
         videoSerializer = ViedoSerializer(videos,many=True)
 
 
@@ -94,7 +94,8 @@ def ProjetByName(request):
 
     
         url=request.META['HTTP_HOST']+serializer.data["couverture"]   
-        res["projet"].append({"nom": serializer.data["nom"],
+        res["projet"].append({"id":serializer.data['id'],
+            "nom": serializer.data["nom"],
              "description":serializer.data["description"],
              "theme":serializer.data["theme"],
             "couverture":url})

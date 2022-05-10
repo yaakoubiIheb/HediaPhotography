@@ -5,7 +5,7 @@ from django.utils.html import mark_safe
 
 #the theme model
 class Theme(models.Model):
-    nom = models.CharField(max_length=50,blank=False,primary_key=True )
+    nom = models.CharField(max_length=50,blank=False)
     description= models.TextField(blank=False)
     couverture=models.ImageField(upload_to ='ThemeImages/',blank=False)
     def __str__(self):
@@ -22,7 +22,7 @@ class Theme(models.Model):
 
 #the project model
 class Projet(models.Model):
-    nom = models.CharField(max_length=50,primary_key=True)
+    nom = models.CharField(max_length=50,blank=False)
     description= models.TextField()
     couverture=models.ImageField(upload_to ='ProjectImages/',blank=False)
     theme = models.ForeignKey(Theme,on_delete=models.CASCADE,blank=False)
@@ -146,6 +146,9 @@ class Information(models.Model):
     description=models.TextField(blank=True)
     def __str__(self):
         return self.email
+
+
+
 
 
 

@@ -6,15 +6,10 @@ from django.contrib.auth.models import Group
 
 
 
-
-
-
-
-
 class CouvertureAdmin(admin.ModelAdmin):
 
-    list_display=('nom','description',)
-    list_display_links=('nom','description',)
+    list_display=('id','nom','description',)
+    list_display_links=('id','nom','description',)
     readonly_fields = ('couverture_preview',)
 
     def couverture_preview(self, obj):
@@ -28,9 +23,9 @@ class CouvertureAdmin(admin.ModelAdmin):
 
 class ProjetAdmin(admin.ModelAdmin):
 
-    list_display=('nom','description','theme')
-    list_display_links=('nom','description','theme')
-    list_filter=['theme']
+    list_display=('id','nom','description','theme')
+    list_display_links=('id','nom','description','theme')
+    list_filter=['theme__nom']
     search_fields=['nom','theme__nom']
     readonly_fields = ('couverture_preview',)
 
@@ -50,7 +45,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_display_links=('projet','image_preview','priorite',)
     search_fields=['projet__nom']
     readonly_fields = ('image_preview',)
-    list_filter=['projet','priorite']
+    list_filter=['projet__nom','priorite']
 
     def image_preview(self, obj):
         return obj.image_preview
@@ -102,7 +97,7 @@ class VideoAdmin(admin.ModelAdmin):
 
     list_display=('projet','url',)
     list_display_links=('projet','url',)
-    list_filter=['projet']
+    list_filter=['projet__nom']
     search_fields=['url']
     readonly_fields = ('video_preview', )
 
@@ -137,4 +132,11 @@ admin.site.site_url=None
 
 admin.site.unregister(User)
 admin.site.unregister(Group)
+
+
+
+
+
+
+
 

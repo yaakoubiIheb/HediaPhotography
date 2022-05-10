@@ -1,4 +1,6 @@
 from django.urls import path
+
+
 from .Views.ThemeView import*
 from .Views.ProjetView import*
 from .Views.ImageView import*
@@ -17,7 +19,7 @@ path('themeByName/',Theme_detail),
 
 #project paths
 path('projet/',ProjetByTheme),
-path('projetByName/',ProjetByName),
+path('projetById/',ProjetById),
 
 
 
@@ -40,4 +42,6 @@ path('personne/',Personne_List),
 #information paths
 path('information/',Information_List),
 ]
+
+
 
