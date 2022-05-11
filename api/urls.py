@@ -13,7 +13,7 @@ urlpatterns = [
 
 #theme paths
 path('theme/',Theme_list),
-path('themeByName/',Theme_detail),
+path('themeById/',Theme_detail),
 
 
 

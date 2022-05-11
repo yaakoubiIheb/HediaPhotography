@@ -29,17 +29,18 @@ def Theme_list(request):
 def Theme_detail(request):
   
     try:
-        theme = Theme.objects.get(pk=request.POST.get('id'))
+        theme = Theme.objects.get(pk=request.POST.get("id"))
 
         
     except Theme.DoesNotExist:
         return HttpResponse("Theme not found",status=404)
+        
 
     if request.method == 'POST':
 
         serializer = ThemeSerializer(theme)
         url=request.META['HTTP_HOST']+serializer.data["couverture"]
-        return JsonResponse({"id":theme['id'],"nom": serializer.data["nom"],
+        return JsonResponse({"id":serializer.data['id'],"nom": serializer.data["nom"],
              "description":serializer.data["description"],
             "couverture":url})
 
