@@ -12,9 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-bepg%%97u^3&)ipqa-u%t$dp5!ml933ah#1%m#k1v1--pcqa)-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["188.165.6.81","hediaadmin.ovh"]
 
 
 # Application definition
@@ -72,10 +72,10 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
    'default': {
         'ENGINE': 'mysql.connector.django',
-        'NAME': 'studio',
-        'USER': 'root',
-        'PASSWORD': 'raouliheb123',
-        'HOST': 'localhost',
+        'NAME': 'hediabs761',
+        'USER': 'hediabs761',
+        'PASSWORD': 'hediaBenArari123',
+        'HOST': 'hediabs761.mysql.db',
         'PORT': '3306',
     }
 }
