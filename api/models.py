@@ -38,11 +38,6 @@ class Projet(models.Model):
 
 
 
-#this class is for giving the image priority in django admin
-class ThingPriority(models.IntegerChoices):
-    LOW = 0, 'Low'
-    NORMAL = 1, 'Normal'
-    HIGH = 2, 'High'
 
 
 
@@ -50,9 +45,14 @@ class ThingPriority(models.IntegerChoices):
 
 #the image model
 class Image(models.Model):
+    STATUS = (
+      (0,  ('LOW')),
+      (1, ('MEDUIM')),
+      (2, ('HIGH')),
+   )
     projet = models.ForeignKey(Projet,on_delete=models.CASCADE,blank=False)
     image =models.ImageField(blank=False,upload_to ='Images/')
-    priorite=models.IntegerField(default=ThingPriority.LOW,choices=ThingPriority.choices)
+    priorite=models.IntegerField(default=1,choices=STATUS)
     @property
     def image_preview(self):
         return mark_safe('<img src="{}" width=300 height=300 />'.format(self.image.url,))
